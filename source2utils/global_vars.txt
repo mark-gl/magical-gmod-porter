@@ -1,0 +1,3 @@
+// NOTE: Keep your variables here as plain as possible. Adding things like quotation marks may cause your script to flip out.
+// Adjust to your own root content folder
+gameContentRoot = C:\Users\Mark\Downloads\magical-gmod-porter\Extracted\

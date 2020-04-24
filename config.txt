@@ -1,0 +1,13 @@
+[Game Directory]
+C:\Program Files (x86)\Steam\steamapps\common
+
+[VPK List]
+GarrysMod\garrysmod\fallbacks_dir.vpk
+GarrysMod\garrysmod\garrysmod_dir.vpk
+Counter-Strike Source\cstrike\cstrike_pak_dir.vpk
+Counter-Strike Source\hl2\hl2_misc_dir.vpk
+Counter-Strike Source\hl2\hl2_textures_dir.vpk
+
+[Content Folders]
+GarrysMod\garrysmod
+Counter-Strike Source\cstrike
