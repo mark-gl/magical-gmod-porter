@@ -1,2 +1,3 @@
-/converted/*
-/not-so-magical-map-porter/convertme/*
+converted/*
+not-so-magical-map-porter/convertme/*
+!not-so-magical-map-porter/convertme/.gitkeep

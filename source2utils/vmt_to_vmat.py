@@ -269,6 +269,7 @@ else:
     print("ERROR: CMD Arguments are invalid. Required format: vmt_to_vmat.py modName C:\optional\path\to\root")
     quit()
 
+failures = []
 # Main function, loop through every .vmt
 for fileName in fileList:
     print('--------------------------------------------------------------------------------------------------------')
@@ -312,11 +313,16 @@ for fileName in fileList:
     if '"patch"' in matType.lower():
         patchFile = vmtParameters["include"].replace('"', '').replace("'", '');
         print("+ Patching materials details from: " + patchFile)
-        with open(PATH_TO_CONTENT_ROOT + patchFile, 'r') as vmtFile:
-            for line in vmtFile.readlines():
-                if any(wd in line.lower() for wd in materialTypes):
-                    validPatch = True
-                parseVMTParameter(line, vmtParameters)
+        try:
+            with open(PATH_TO_CONTENT_ROOT + patchFile, 'r') as vmtFile:
+                for line in vmtFile.readlines():
+                    if any(wd in line.lower() for wd in materialTypes):
+                        validPatch = True
+                    parseVMTParameter(line, vmtParameters)
+        except FileNotFoundError:
+            failures.append(patchFile)
+            print("Couldn't find patch file. Skipping!")
+            continue
                 
         if not validPatch:
             print("+ Patch file is not a valid material. Skipping!")
@@ -458,3 +464,11 @@ for fileName in fileList:
 	# TextureSelfIllumMask "path/to/tex/basetexture_alpha.tga"
 
 # input("\nDone, press ENTER to continue...")
+
+if len(failures) > 0:
+    print()
+    print()
+    print("ERROR: Couldn't convert everything as certain referenced materials are missing.")
+    print("Please check base game (HL2, Counter-Strike: Source, etc) materials folders for the following files and copy them to 'convertme' folder (retaining their path)")
+    for failure in failures:
+        print(failure)
