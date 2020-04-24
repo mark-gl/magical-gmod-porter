@@ -71,3 +71,4 @@ for game in subfolders:
     subprocess.run('vtflib\VTFCmd.exe -folder "' + game + '\\materials\\*.vtf" -recurse -exportformat "tga"', shell=True)
     open(game + '\\convertedBumpmaps.txt', 'a').close()
     subprocess.run('python source2utils\\vmt_to_vmat.py "' + game + '"', shell=True)
+print("Done! The subfolders of 'Extracted' can now be copied to your Source 2 SDK's 'content' folder.")
