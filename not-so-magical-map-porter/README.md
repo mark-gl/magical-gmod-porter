@@ -18,7 +18,7 @@ You will need:
 
 ## Notes
 - Some maps contain materials that refer to other game materials, for example a shinier version of a brick wall from Half Life 2. These assets will cause an error, since the original is not present. You will be able to see a list of affected materials after running `convert-all-assets.bat`. To fix these materials, run `magical-gmod-porter` and copy the required materials from the 'extracted' folder to their respective folder within 'convertme'.
-- Refer to magical-gmod-porter notes information about getting converted content into the Source 2 SDK.
 - BSP decompilation is always a hit or miss
 - Barely any of the entities in the map will work and unless you remove most of them, it'll just crash on launch
 - Once the map is opened in Source 2's Hammer editor, all the texture scaling will be incorrect
+- Refer to magical-gmod-porter notes information about getting converted content into the Source 2 SDK.
