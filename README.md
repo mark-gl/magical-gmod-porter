@@ -13,7 +13,7 @@ HL2 does not need to be installed, as its content is included in both Gmod and C
 
 ## Instructions
 1. Edit the second line of `config.txt` to contain the folder your games are installed in eg. `C:\Program Files (x86)\Steam\steamapps\common`
-2. Run `convert-all-assets.py`! Converted assets will appear in the 'Extracted' folder.
+2. Run `convert-all-assets.py`! Converted assets will appear in the 'converted' folder.
 
 ## Notes
 - To make the converted assets appear in Source 2 SDK, simply copy the 'models' and 'materials' folders into the SDK folder for your mod, eg. `content\hlvr`
