@@ -11,7 +11,7 @@ from pathlib import Path
 
 # I couldn't find a simple way to quietly merge two folders, so here's some verbose StackOverflow code
 # https://stackoverflow.com/questions/7419665/python-move-and-overwrite-files-and-folders
-def moveAndMerge(source, destination):
+def copyAndMerge(source, destination):
     for src_dir, dirs, files in os.walk(source):
         dst_dir = src_dir.replace(source, destination, 1)
         if not os.path.exists(dst_dir):
@@ -23,7 +23,7 @@ def moveAndMerge(source, destination):
                 if os.path.samefile(src_file, dst_file):
                     continue
                 os.remove(dst_file)
-            shutil.move(src_file, dst_dir)
+            shutil.copy(src_file, dst_dir)
 
 # This code isn't very fancy, but it works
 # Obviously, changing the order of the config sections will break it completely
@@ -55,20 +55,20 @@ workingDir = os.getcwd()
 for vpk in vpkList:
     os.chdir(os.path.join(str(Path(gameDir + vpk).parents[1]) + "\\bin"))
     subprocess.run('vpk.exe "' + gameDir + vpk + '"', shell=True)
-    moveAndMerge(gameDir + vpk[:-4] + "\\models", workingDir + "\\Extracted\\" + vpk.split("\\")[1] + "\\models")
-    moveAndMerge(gameDir + vpk[:-4] + "\\materials", workingDir + "\\Extracted\\" + vpk.split("\\")[1] + "\\materials")
+    copyAndMerge(gameDir + vpk[:-4] + "\\models", workingDir + "\\converted\\" + vpk.split("\\")[1] + "\\models")
+    copyAndMerge(gameDir + vpk[:-4] + "\\materials", workingDir + "\\converted\\" + vpk.split("\\")[1] + "\\materials")
     shutil.rmtree(gameDir + vpk[:-4])
 for folder in contentList:
-    moveAndMerge(gameDir + folder + "\\models", workingDir + "\\Extracted\\" + folder.split("\\")[1] + "\\models")
-    moveAndMerge(gameDir + folder + "\\materials", workingDir + "\\Extracted\\" + folder.split("\\")[1] + "\\materials")
+    copyAndMerge(gameDir + folder + "\\models", workingDir + "\\converted\\" + folder.split("\\")[1] + "\\models")
+    copyAndMerge(gameDir + folder + "\\materials", workingDir + "\\converted\\" + folder.split("\\")[1] + "\\materials")
 
 # Conversion
 os.chdir(workingDir)
-subfolders = [folder.path for folder in os.scandir(workingDir + "\\Extracted\\") if folder.is_dir()]
+subfolders = [folder.path for folder in os.scandir(workingDir + "\\converted\\") if folder.is_dir()]
 for game in subfolders:
     # Naughty method of running another python file, but give me a break
     subprocess.run('python source2utils\\mdl_to_vmdl.py "' + game + '\\models"', shell=True)
     subprocess.run('vtflib\VTFCmd.exe -folder "' + game + '\\materials\\*.vtf" -recurse -exportformat "tga"', shell=True)
     open(game + '\\convertedBumpmaps.txt', 'a').close()
     subprocess.run('python source2utils\\vmt_to_vmat.py "' + game + '"', shell=True)
-print("Done! The subfolders of 'Extracted' can now be copied to your Source 2 SDK's 'content' folder.")
+print("Done! The subfolders of 'converted' can now be copied to your Source 2 SDK's 'content' folder.")
