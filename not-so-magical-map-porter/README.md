@@ -18,6 +18,6 @@ You will need:
 
 ## Notes
 - Some maps contain materials that refer to external game content, for example a shinier version of a brick wall from Half Life 2. These materials will cause an error, but you will be able to see a list of affected materials after running `convert-all-assets.bat`. To fix them, run `magical-gmod-porter` and copy the required materials from the 'extracted' folder to their respective folder within 'convertme'.
-- BSP decompilation is always a hit or miss
 - Refer to magical-gmod-porter notes for information about getting converted assets into the Source 2 SDK. The decompiled vmf can be opened by changing the 'Open' filetype to 'Source 1.0 Map Files (\*.vmf)'. 
 - Once the map is opened in Source 2's Hammer editor, all the texture scaling will be incorrect. You can try using the source2utils vmf_fixer.py to fix this problem.
+- BSP decompilation is always a hit or miss
