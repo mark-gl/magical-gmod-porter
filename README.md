@@ -1,8 +1,6 @@
 # magical-gmod-porter
 Automatically extracts and converts all Garry's Mod, Half-Life 2 and Counter-Strike: Source models and materials to formats ready to be used in Source 2's Hammer editor.
 
-NOTE! This currently doesn't work properly for models, do not use at the moment!
-
 ## Requirements
 You will need:
 - Python 3.7
